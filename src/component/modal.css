@@ -1,0 +1,17 @@
+.modal-container {
+  width: 100vw;
+  height: 50vh;
+  background: #000000;
+  opacity: 0.5;
+  position: relative;
+}
+.modal-card {
+  /* padding: 20px; */
+  position: absolute;
+  left: 300px;
+  /* align-items: center; */
+  background: #fff;
+  border: 1px solid red;
+  width: 50vw;
+  height: 50vw;
+}

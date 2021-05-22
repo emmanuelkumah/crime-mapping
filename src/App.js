@@ -1,12 +1,7 @@
 import "./App.css";
 
 import React, { useState } from "react";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 // import usePlacesAutocomplete, {
 //   getGeocode,
 //   getLatLng,
@@ -19,9 +14,9 @@ import {
 //   ComboboxOption,
 // } from "@reach/combobox";
 import { formatRelative } from "date-fns";
-
 import "@reach/combobox/styles.css";
 import MapStyles from "./MapStyle";
+import Modal from "./component/Modal";
 
 //place libraries
 const libraries = ["places"];
@@ -43,7 +38,10 @@ const options = {
 };
 function App() {
   const [markers, setMarkers] = useState([]);
-  console.log(markers);
+  const [openModal, setOpenModal] = useState(false);
+  const [crimeInputText, setCrimeInputText] = useState("");
+  const [crime, setCrime] = useState("");
+  console.log(crime);
   //load the google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -59,6 +57,7 @@ function App() {
 
   // handle map click
   const handleMapClick = (event) => {
+    setOpenModal(true);
     setMarkers((current) => [
       ...current,
       {
@@ -71,6 +70,16 @@ function App() {
 
   return (
     <div>
+      {openModal ? (
+        <Modal
+          crimeInputText={crimeInputText}
+          setCrimeInputText={setCrimeInputText}
+          crime={crime}
+          setCrime={setCrime}
+          setOpenModal={setOpenModal}
+        />
+      ) : null}
+
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}

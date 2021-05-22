@@ -1,4 +1,4 @@
-export default [
+const MapStyles = [
   {
     featureType: "administrative",
     stylers: [
@@ -104,3 +104,4 @@ export default [
     ],
   },
 ];
+export default MapStyles;
