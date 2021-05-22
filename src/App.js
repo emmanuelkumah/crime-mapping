@@ -43,7 +43,9 @@ const options = {
 };
 function App() {
   const [markers, setMarkers] = useState([]);
-  console.log(markers);
+  const [crime, setCrime] = useState("");
+  const [hasCrime, setHasCrime] = useState(false);
+  console.log(hasCrime);
   //load the google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -59,6 +61,8 @@ function App() {
 
   // handle map click
   const handleMapClick = (event) => {
+    //set has crime to true
+    setHasCrime(true);
     setMarkers((current) => [
       ...current,
       {
