@@ -1,4 +1,5 @@
 import React from "react";
+import { AiFillCloseSquare } from "react-icons/ai";
 import "./modal.css";
 
 function Modal({ crimeInputText, setCrimeInputText, setCrime, setOpenModal }) {
@@ -9,19 +10,24 @@ function Modal({ crimeInputText, setCrimeInputText, setCrime, setOpenModal }) {
   };
   return (
     <div className="modal-container">
-      <div className="modal-card">
-        <div>
-          <form onSubmit={handleFormInput}>
+      <section className="modal-card">
+        <div className="modalClose-icon">
+          <AiFillCloseSquare onClick={() => setOpenModal(false)} />
+        </div>
+        <form onSubmit={handleFormInput}>
+          <h2>What Crime Was Committed Here?</h2>
+          <div className="modal-input">
             <input
               type="text"
+              autoFocus
               value={crimeInputText}
               onChange={(event) => setCrimeInputText(event.target.value)}
+              placeholder="Please enter the type of crime"
             />
-            <button>Submit</button>
-          </form>
-          <button onClick={() => setOpenModal(false)}>Close Modal</button>
-        </div>
-      </div>
+            <button className="submit-btn">Submit</button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 }
