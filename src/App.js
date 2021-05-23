@@ -38,16 +38,11 @@ const options = {
 };
 function App() {
   const [markers, setMarkers] = useState([]);
-<<<<<<< HEAD
-  const [crime, setCrime] = useState("");
-  const [hasCrime, setHasCrime] = useState(false);
-  console.log(hasCrime);
-=======
   const [openModal, setOpenModal] = useState(false);
   const [crimeInputText, setCrimeInputText] = useState("");
-  const [crime, setCrime] = useState("");
-  console.log(crime);
->>>>>>> feature/modal
+  const [crime, setCrime] = useState({ offense: "" });
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
   //load the google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -63,18 +58,16 @@ function App() {
 
   // handle map click
   const handleMapClick = (event) => {
-<<<<<<< HEAD
-    //set has crime to true
-    setHasCrime(true);
-=======
     setOpenModal(true);
->>>>>>> feature/modal
+    //check if input is not empty
+
     setMarkers((current) => [
       ...current,
       {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
         time: new Date(),
+        offense: "",
       },
     ]);
   };
@@ -85,6 +78,8 @@ function App() {
         <Modal
           crimeInputText={crimeInputText}
           setCrimeInputText={setCrimeInputText}
+          markers={markers}
+          setMarkers={setMarkers}
           crime={crime}
           setCrime={setCrime}
           setOpenModal={setOpenModal}
@@ -103,6 +98,13 @@ function App() {
           <Marker
             key={marker.time.toISOString()}
             position={{ lat: marker.lat, lng: marker.lng }}
+            icon={{
+              url: "/images/criminal.png",
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(30, 30),
+            }}
+            onClick={() => setSelectedMarker(marker)}
           />
         ))}
       </GoogleMap>
