@@ -18,30 +18,34 @@ import "@reach/combobox/styles.css";
 import MapStyles from "./MapStyle";
 import Modal from "./component/Modal";
 
-//place libraries
+//access the places library from maps
 const libraries = ["places"];
 //define the width and height of the map
 const mapContainerStyle = {
   width: "100vw",
   height: "100vh",
 };
-//cordinates of the map to be loaded ie. Accra
+//get destination map(Accra) cordinates
 const center = {
   lat: 5.603717,
   lng: -0.186964,
 };
-//map options
+//add options to map
 const options = {
   styles: MapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
 function App() {
+  //set map data
   const [markers, setMarkers] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [crimeInputText, setCrimeInputText] = useState("");
-  const [crime, setCrime] = useState({ offense: "" });
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [mapDetails, setMapDetails] = useState({
+    lat: "",
+    lng: "",
+    time: "",
+    crime: "",
+  });
 
   //load the google script
   const { isLoaded, loadError } = useLoadScript({
@@ -57,32 +61,38 @@ function App() {
   }
 
   // handle map click
-  const handleMapClick = (event) => {
+  const onMapClick = (event) => {
+    //get the cordinates of the area clicked
+    setMapDetails({
+      ...mapDetails,
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+      time: new Date(),
+    });
+    //define interval to show modal on map click
+    setTimeout(modal, 2000);
+  };
+  //open modal to input crime
+  const modal = () => {
     setOpenModal(true);
-    //check if input is not empty
-
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-        time: new Date(),
-        offense: "",
-      },
-    ]);
   };
 
+  //get all details of  map
+  const getMapDetails = (mapDetails) => {
+    //update marker with map details
+    setMarkers([...markers, mapDetails]);
+  };
+  console.log(markers);
   return (
     <div>
       {openModal ? (
         <Modal
-          crimeInputText={crimeInputText}
-          setCrimeInputText={setCrimeInputText}
           markers={markers}
           setMarkers={setMarkers}
-          crime={crime}
-          setCrime={setCrime}
           setOpenModal={setOpenModal}
+          mapDetails={mapDetails}
+          setMapDetails={setMapDetails}
+          getMapDetails={getMapDetails}
         />
       ) : null}
 
@@ -91,22 +101,9 @@ function App() {
         zoom={10}
         center={center}
         options={options}
-        onClick={handleMapClick}
+        onClick={onMapClick}
       >
         {/* display the markers on the map */}
-        {markers.map((marker) => (
-          <Marker
-            key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            icon={{
-              url: "/images/criminal.png",
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-            onClick={() => setSelectedMarker(marker)}
-          />
-        ))}
       </GoogleMap>
     </div>
   );

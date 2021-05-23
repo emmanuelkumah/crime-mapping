@@ -2,24 +2,29 @@ import React from "react";
 import { AiFillCloseSquare } from "react-icons/ai";
 import "./modal.css";
 
-function Modal({
-  crimeInputText,
-  setCrimeInputText,
-  crime,
-  setCrime,
-  markers,
-  setMarkers,
-  setOpenModal,
-}) {
+function Modal({ setOpenModal, mapDetails, setMapDetails, getMapDetails }) {
   //get the value of the input
   const handleCrimeInput = (event) => {
-    setMarkers([{ ...markers, offense: event.target.value }]);
+    //update the value of the crime
+    setMapDetails({
+      ...mapDetails,
+      crime: event.target.value,
+    });
+    //reset input details
   };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    //clear input field
-    // setCrime({ ...crime, offense: "" });
-    console.log(markers);
+    //reset the input field
+    if (mapDetails.crime.trim()) {
+      //pass the map details to the getMapDetails function
+      getMapDetails(mapDetails);
+      //reset the input field
+      setMapDetails({
+        ...mapDetails,
+        crime: "",
+      });
+    }
   };
 
   return (
@@ -33,10 +38,9 @@ function Modal({
           <div className="modal-input">
             <input
               type="text"
-              autoFocus
-              value={crime.offense}
-              onChange={handleCrimeInput}
               placeholder="Please enter the type of crime"
+              value={mapDetails.crime}
+              onChange={handleCrimeInput}
             />
             <button className="submit-btn">Submit</button>
           </div>
