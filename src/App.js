@@ -13,6 +13,7 @@ import "@reach/combobox/styles.css";
 import MapStyles from "./MapStyle";
 import Modal from "./component/Modal";
 import Search from "./component/Search";
+import Locate from "./component/Locate";
 
 //access the places library from maps
 const libraries = ["places"];
@@ -104,8 +105,9 @@ function App() {
           getMapDetails={getMapDetails}
         />
       ) : null}
-      {/* show the search component  */}
+      {/* show the search and locate component  */}
       <Search panTo={panTo} />
+      <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
