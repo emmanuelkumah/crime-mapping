@@ -7,21 +7,12 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-// import usePlacesAutocomplete, {
-//   getGeocode,
-//   getLatLng,
-// } from "use-places-autocomplete";
-// import {
-//   Combobox,
-//   ComboboxInput,
-//   ComboboxPopover,
-//   ComboboxList,
-//   ComboboxOption,
-// } from "@reach/combobox";
+
 import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 import MapStyles from "./MapStyle";
 import Modal from "./component/Modal";
+import Search from "./component/Search";
 
 //access the places library from maps
 const libraries = ["places"];
@@ -52,11 +43,19 @@ function App() {
     crime: "",
   });
   const [clickedMarker, setClickedMarker] = useState(null);
-  console.log(clickedMarker);
+
+  // Help move where the map is
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+  //pan and zoom map to cordinates
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
+
   //load the google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
@@ -105,7 +104,8 @@ function App() {
           getMapDetails={getMapDetails}
         />
       ) : null}
-
+      {/* show the search component  */}
+      <Search panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
