@@ -3,6 +3,112 @@
   margin: 0;
   padding: 0;
 }
+/* 
+Variables
+ */
+:root {
+  --primaryColor: #650d1b;
+  --secondaryColor: #f3b700;
+  --background: #eef0f2;
+  --mainBlack: #111111;
+  --mainWhite: #ffffff;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.1rem;
+  --navbarShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --mainBorderRadius: 0.59rem;
+  --smallWidth: 85vw;
+  --maxWidth: 40rem;
+  --max-width: 1170px;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--mainBlack);
+  line-height: 1.4;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+h1,
+h2 {
+  margin-bottom: 1.25rem;
+  letter-spacing: var(--mainSpacing);
+  font-family: "Limelight", cursive;
+  font-style: 2rem;
+}
+
+h3,
+h4 {
+  font-size: 1.5rem;
+}
+p {
+  margin-bottom: 1.25rem;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+a {
+  text-decoration: none;
+  color: var(--mainWhite);
+}
+/* NavBar Section */
+.nav-container {
+  background: var(--primaryColor);
+  height: 5rem;
+  box-shadow: var(--navbarShadow);
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--smallWidth);
+  max-width: var(--max-width);
+}
+.logo-container {
+  display: flex;
+}
+
+.logo-icon {
+  color: var(--secondaryColor);
+  font-size: 1.1rem;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav-links a {
+  display: flex;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1.2rem;
+  padding: 0.25rem 1.5rem;
+  transition: var(--mainTransition);
+}
+.nav-links a:hover {
+  color: var(--secondaryColor);
+  border-bottom: 3px solid var(--secondaryColor);
+}
+/* End of navbar styling */
+/* Hero Section Begins */
+
+/* ====Hero Section Begins=== */
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/public/images/map.jpg");
+  height: 100vh;
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+/* End of Hero Section */
 .search {
   position: absolute;
   top: 1rem;
