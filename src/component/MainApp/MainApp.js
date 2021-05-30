@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
+import markerIcon from "../../images/crimeIcon2.jpg";
 import {
   GoogleMap,
   useLoadScript,
@@ -120,7 +121,8 @@ function MainApp() {
             key={marker.time.toISOString}
             position={{ lat: marker.lat, lng: marker.lng }}
             icon={{
-              url: "/images/crime2.png",
+              url: markerIcon,
+
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
               scaledSize: new window.google.maps.Size(30, 30),
