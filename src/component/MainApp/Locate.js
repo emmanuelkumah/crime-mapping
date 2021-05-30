@@ -1,4 +1,5 @@
 import React from "react";
+import locateIcon from "../../images/icon.jpg";
 
 function Locate({ panTo }) {
   const getLocation = () => {
@@ -15,7 +16,7 @@ function Locate({ panTo }) {
   return (
     <div className="locate">
       <button onClick={getLocation}>
-        <img src="/images/icon.jpg" alt="locate-icon" />
+        <img src={locateIcon} alt="locate-icon" />
       </button>
     </div>
   );

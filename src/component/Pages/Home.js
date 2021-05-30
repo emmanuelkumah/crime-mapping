@@ -1,4 +1,5 @@
 import React from "react";
+import FooterSection from "../FooterSection";
 import HeroSection from "../HeroSection";
 import MainSection from "../MainSection";
 
@@ -9,6 +10,7 @@ function Home() {
       <main>
         <MainSection />
       </main>
+      <FooterSection />
     </section>
   );
 }
