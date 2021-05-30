@@ -1,4 +1,5 @@
 import React from "react";
+import { BiMapPin } from "react-icons/bi";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function NavBar() {
@@ -9,7 +10,7 @@ function NavBar() {
           <Link to="/" className="logo-text">
             <h2>
               <span className="logo-icon">
-                <BsFillMicMuteFill />
+                <BiMapPin />
               </span>
               CrimeHood
             </h2>

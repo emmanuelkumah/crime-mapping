@@ -15,7 +15,7 @@ Variables
   --mainTransition: all 0.3s linear;
   --mainSpacing: 0.1rem;
   --navbarShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  --mainBorderRadius: 0.59rem;
+  --mainBorderRadius: 2.2rem;
   --smallWidth: 85vw;
   --maxWidth: 40rem;
   --max-width: 1170px;
@@ -31,7 +31,7 @@ body {
 }
 h1,
 h2 {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   letter-spacing: var(--mainSpacing);
   font-family: "Limelight", cursive;
   font-style: 2rem;
@@ -43,6 +43,7 @@ h4 {
 }
 p {
   margin-bottom: 1.25rem;
+  /* font-size: 1.6rem; */
 }
 ul {
   list-style-type: none;
@@ -100,7 +101,7 @@ a {
 /* ====Hero Section Begins=== */
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/public/images/map.jpg");
+    url("./images/map.jpg");
   height: 100vh;
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
@@ -108,7 +109,76 @@ a {
   background-size: cover;
   position: relative;
 }
+.hero-text {
+  position: absolute;
+  top: 30%;
+  margin-left: 20%;
+  margin-right: 20%;
+  color: var(--mainWhite);
+}
+.hero-text h1 {
+  font-size: 2.1rem;
+}
+.hero-text p {
+  font-size: 1.5rem;
+}
+.hero-text button {
+  outline: none;
+  border: none;
+  border-radius: var(--mainBorderRadius);
+  padding: 1rem;
+  font-size: 1.4rem;
+  color: var(--mainWhite);
+  background: #c31432; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #650d1b,
+    #c31432
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #650d1b,
+    #c31432
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.hero-text button:hover,
+:focus {
+  cursor: pointer;
+  background: var(--secondaryColor);
+  color: var(--primaryColor);
+}
 /* End of Hero Section */
+
+/* Main Section Begins */
+.article-container {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  /* margin-left: 5.1rem; */
+  /* margin-right: 5.1rem; */
+}
+.article-heading {
+  color: var(--primaryColor);
+  text-align: center;
+  padding: 2rem;
+}
+.article-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.article-card-title {
+  color: var(--primaryColor);
+}
+.article-card-item {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  background-color: #f1f1f1;
+  padding: 2rem;
+  flex-basis: 45%;
+  margin-right: 2rem;
+  margin-left: 1.2rem;
+  border-radius: 10px;
+}
+
+/* Main Section Ends */
 .search {
   position: absolute;
   top: 1rem;
@@ -137,4 +207,95 @@ a {
 .locate img {
   width: 30px;
   cursor: pointer;
+}
+
+/* 
+  Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .nav-content {
+    width: 100vw;
+    margin: 1rem;
+  }
+  .nav-links {
+    margin-bottom: 1rem;
+  }
+  .hero-image {
+    height: 80vh;
+  }
+  .hero-text {
+    top: 10%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
+  button {
+    margin-bottom: 2rem;
+  }
+  .article-container {
+    margin: 2rem;
+  }
+  .article-card-item {
+    flex-basis: 100%;
+    margin-bottom: 2rem;
+  }
+  .article-card-title {
+    font-size: 0.9rem;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+  .hero-image {
+    height: 60vh;
+  }
+  .hero-text {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+  .logo-container {
+    margin-left: 4rem;
+    margin-top: 1rem;
+  }
+  .article-container {
+    /* margin: 4rem; */
+  }
+  .article-card-item {
+    flex-basis: 100%;
+    margin-bottom: 3rem;
+  }
+}
+
+/* Large
+  devices
+  (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+  .hero-image {
+    height: 60vh;
+  }
+  .article-card-item {
+    margin-left: 4rem;
+    margin-right: 2rem;
+    flex-basis: 40%;
+  }
+}
+
+/* Extra large devices (large 
+  laptops and desktops, 
+  1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .hero-image {
+    height: 60vh;
+  }
+  /* button {
+    margin-bottom: 2rem;
+  } */
+  .article-container {
+    margin-left: 2.5rem;
+  }
+  .article-card-item {
+    /* margin-left: 4rem; */
+    margin-right: 2rem;
+    flex-basis: 40%;
+  }
 }

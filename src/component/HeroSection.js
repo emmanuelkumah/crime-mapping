@@ -1,11 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
     <section className="hero-image">
-      <div>
-        <h1>This is the main heading</h1>
-        <h2>This is the sub heading</h2>
+      <div className="hero-text">
+        <h1>Creating A Safer Neighborhood</h1>
+        <p>
+          We empower citizens to report crimes anywhere in their locality and
+          allow other users to easily look up crimes anywhere in Accra, Ghana's
+          capital.
+        </p>
+        <Link to="/app">
+          <button> View Map</button>
+        </Link>
       </div>
     </section>
   );

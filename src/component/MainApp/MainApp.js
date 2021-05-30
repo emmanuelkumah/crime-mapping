@@ -8,10 +8,10 @@ import {
 
 import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
-import MapStyles from "./Home/component/MapStyle";
-import Modal from "./component/Modal";
-import Search from "./component/Search";
-import Locate from "./component/Locate";
+import MapStyles from "./MapStyle";
+import Modal from "./Modal";
+import Search from "./Search";
+import Locate from "./Locate";
 
 //access the places library from maps
 const libraries = ["places"];
