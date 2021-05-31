@@ -16,12 +16,6 @@ function NavBar() {
             </h2>
           </Link>
         </div>
-
-        <ul className="nav-links">
-          <Link to="/">
-            <li>Home</li>
-          </Link>
-        </ul>
       </div>
     </nav>
   );

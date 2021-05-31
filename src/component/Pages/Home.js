@@ -10,7 +10,6 @@ function Home() {
       <main>
         <MainSection />
       </main>
-      <FooterSection />
     </section>
   );
 }

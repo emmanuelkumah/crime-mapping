@@ -1,0 +1,54 @@
+.container {
+  /* Used to position the arrow */
+  position: relative;
+}
+
+/* Show the arrow and content and restore pointer events when hovering the trigger element */
+.container:hover .container__arrow,
+.container:hover .container__content {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.container__arrow {
+  /* Invisible by default */
+  opacity: 0;
+
+  /* To prevent accidental interactions with other elements  */
+  pointer-events: none;
+
+  /* Border */
+  border: 8px solid transparent;
+  border-top-color: #650d1b;
+
+  /* Position */
+  bottom: 100%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 8px);
+
+  height: 0;
+  width: 0;
+
+  z-index: 10;
+}
+h4 {
+  text-align: center;
+}
+
+.container__content {
+  color: #fff;
+  opacity: 0;
+
+  pointer-events: none;
+  padding: 2rem;
+  background-color: #650d1b;
+  border-radius: 2px;
+
+  bottom: 100%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -8px);
+
+  z-index: 10;
+}

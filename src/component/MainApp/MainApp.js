@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import markerIcon from "../../images/crimeIcon2.jpg";
+import markerIcon from "../../images/crimeIcon.png";
 import {
   GoogleMap,
   useLoadScript,
@@ -13,6 +13,7 @@ import MapStyles from "./MapStyle";
 import Modal from "./Modal";
 import Search from "./Search";
 import Locate from "./Locate";
+import ToolTip from "./ToolTip";
 
 //access the places library from maps
 const libraries = ["places"];
@@ -109,7 +110,7 @@ function MainApp() {
       <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={13}
         center={center}
         options={options}
         onClick={onMapClick}
@@ -122,10 +123,9 @@ function MainApp() {
             position={{ lat: marker.lat, lng: marker.lng }}
             icon={{
               url: markerIcon,
-
               origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
+              anchor: new window.google.maps.Point(20, 20),
+              scaledSize: new window.google.maps.Size(40, 40),
             }}
             onClick={() => setClickedMarker(marker)}
           />
@@ -137,15 +137,16 @@ function MainApp() {
             onCloseClick={() => setClickedMarker(null)}
           >
             <div>
-              <h2>
+              <h3>
                 Crime committed: <span>{clickedMarker.crime}</span>
-              </h2>
+              </h3>
 
-              <h3>Occured {formatRelative(clickedMarker.time, new Date())}</h3>
+              <p>Occured {formatRelative(clickedMarker.time, new Date())}</p>
             </div>
           </InfoWindow>
         ) : null}
       </GoogleMap>
+      <ToolTip />
     </div>
   );
 }
